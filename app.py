@@ -22,7 +22,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
 
 
     # Add logos at the top center
-    c.drawImage('image.png', 50, height - 100, 100, 50)  # Adjust the path and size as necessary
+    c.drawImage('image.png', 350, height - 100, 100, 50)  # Adjust the path and size as necessary
     
     # Add logos at the top center
     c.drawImage('image.png', 250, height - 120, 120, 60)  # Adjust the path and size as necessary
