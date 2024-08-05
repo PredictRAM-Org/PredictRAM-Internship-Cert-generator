@@ -37,7 +37,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.setFillColor(colors.navy)
     c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
 
-    c.setFont("Helvetica", 12)
+    c.setFont("Helvetica", 18)
     c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
 
     c.setFont("Helvetica-Bold", 16)
@@ -46,7 +46,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.setFont("Helvetica-Bold", 20)
     c.drawCentredString(width / 2.0, height - 240, name)
 
-    c.setFont("Helvetica", 12)
+    c.setFont("Helvetica-Bold", 14)
     text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
     
     # Create Paragraph for text wrapping
