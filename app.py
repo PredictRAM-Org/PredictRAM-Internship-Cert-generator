@@ -34,7 +34,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
             self.set_x(-80)
             self.cell(0, 10, 'Director', 0, 1, 'R')
             self.set_y(-30)
-            self.image('/mnt/data/footer_image.png', 60, self.get_y(), 80)  # Replace with actual path
+            self.image('footer_image.png', 60, self.get_y(), 80)  # Replace with actual path
 
         def add_border(self):
             self.set_line_width(2.0)
