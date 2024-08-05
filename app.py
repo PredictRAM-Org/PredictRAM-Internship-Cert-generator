@@ -23,7 +23,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
      # Add logo centered at the top
     logo_width = 150
     logo_height = 75
-    c.drawImage('image.png', (width - logo_width) / 2, height - 100, logo_width, logo_height)
+    c.drawImage('image.png', (width - logo_width) / 2, height - 80, logo_width, logo_height)
 
     # Add border
     c.setStrokeColor(colors.navy)
