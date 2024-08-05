@@ -46,8 +46,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawCentredString(width / 2.0, height - 240, name)
 
     c.setFont("Helvetica", 12)
-    text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom 
-    {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
+    text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
     c.drawCentredString(width / 2.0, height - 270, text)
 
     c.setFont("Helvetica-Bold", 14)
