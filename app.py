@@ -28,10 +28,10 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawImage('image.png', 250, height - 120, 120, 60)  # Adjust the path and size as necessary
 
     # Add border
-    c.setStrokeColor(colors.navy)
+    c.setStrokeColor(colors.blue)
     c.setLineWidth(2)
-    c.rect(0.5 * inch, 0.5 * inch, width - inch, height - inch)
-    c.setStrokeColor(colors.orange)
+    c.rect(0.7 * inch, 0.7 * inch, width - inch, height - inch)
+    c.setStrokeColor(colors.purple)
     c.setLineWidth(1)
     c.rect(0.55 * inch, 0.55 * inch, width - 1.1 * inch, height - 1.1 * inch)
 
