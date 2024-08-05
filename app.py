@@ -20,19 +20,8 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c = canvas.Canvas(pdf_file, pagesize=letter)
     width, height = letter
 
-     # Path to the image
-image_path = 'image.png'
-image = ImageReader(image_path)
-
-# Get image dimensions
-image_width, image_height = image.getSize()
-
-# Calculate x position to center the image
-x_position = (width - image_width) / 2
-y_position = height - image_height - 50  # 50 points from the top
-
-# Draw the image at the calculated position
-c.drawImage(image_path, x_position, y_position, width=image_width, height=image_height)
+    # Add logos at the top center
+    c.drawImage('image.png', 50, height - 100, 100, 50)  # Adjust the path and size as necessary
 
     # Add border
     c.setStrokeColor(colors.navy)
