@@ -81,13 +81,14 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawString(0.75 * inch, y, "Performance Summary:")
     y -= 20
     performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
+    
+    # Create Paragraph for performance summary
     p = Paragraph(performance_summary, style=styles['Normal'])
     p.width = text_width
     p.height = 50  # Adjust height as needed
     p.wrapOn(c, text_width, 50)
-    for line in p.wrap(text_width, 50):
-        c.drawString(0.75 * inch, y, line)
-        y -= 15
+    p.drawOn(c, 0.75 * inch, y)
+    y -= p.height
 
     c.drawCentredString(width / 2.0, y, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}")
     y -= 40
