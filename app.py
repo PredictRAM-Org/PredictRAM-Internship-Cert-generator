@@ -14,7 +14,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     class PDF(FPDF):
         def header(self):
             # Add logos at the top center
-            self.image('/mnt/data/image.png', 50, 10, 100)  # Adjust the path and size as necessary
+            self.image('image.png', 50, 10, 100)  # Adjust the path and size as necessary
             self.ln(35)
             self.set_font('Arial', 'B', 24)
             self.set_text_color(0, 0, 128)  # Navy blue color
