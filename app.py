@@ -101,7 +101,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawString(0.75 * inch, y - 15, "Asst. Prof")
     c.drawString(width - 1.75 * inch, y, "Subir Singh")
     c.drawString(width - 1.75 * inch, y - 15, "Director")
-    y -= 30
+    y -= 40
     c.drawImage('footer_image.png', (width - 320) / 2.0, y, 320, 60)  # Replace with actual path
 
     c.showPage()
