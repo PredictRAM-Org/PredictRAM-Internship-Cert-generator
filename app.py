@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
-from fpdf import FPDF
+from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+from reportlab.pdfgen import canvas
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
 
 # Load candidates
 candidates_file = 'candidates.xlsx'  # Update this path as necessary
@@ -11,64 +15,43 @@ candidates_df.columns = candidates_df.columns.str.strip()
 
 # Function to generate certificate
 def generate_certificate(name, start_date, end_date, issue_date):
-    class PDF(FPDF):
-        def header(self):
-            # Add logos at the top center
-            self.image('image.png', 50, 10, 100)  # Adjust the path and size as necessary
-            self.ln(35)
-            self.set_font('Arial', 'B', 24)
-            self.set_text_color(0, 0, 128)  # Navy blue color
-            self.cell(0, 10, 'CERTIFICATE OF INTERNSHIP', 0, 1, 'C')
-            self.ln(10)
+    pdf_file = f"Internship_Certificate_{name}.pdf"
+    c = canvas.Canvas(pdf_file, pagesize=letter)
+    width, height = letter
 
-        def footer(self):
-            # Footer with images and names
-            self.set_y(-60)
-            self.image('signature1.png', 10, self.get_y(), 30)  # Replace with actual path
-            self.image('signature2.png', 170, self.get_y(), 30)  # Replace with actual path
-            self.set_font('Arial', 'I', 12)
-            self.cell(0, 10, 'Sheetal Maurya', 0, 1, 'L')
-            self.cell(0, 10, 'Asst. Prof', 0, 1, 'L')
-            self.set_x(-80)
-            self.cell(0, 10, 'Subir Singh', 0, 1, 'R')
-            self.set_x(-80)
-            self.cell(0, 10, 'Director', 0, 1, 'R')
-            self.set_y(-30)
-            self.image('footer_image.png', 60, self.get_y(), 80)  # Replace with actual path
-
-        def add_border(self):
-            self.set_line_width(2.0)
-            self.set_draw_color(0, 0, 128)  # Navy blue color
-            self.rect(10, 10, self.w - 20, self.h - 20)
-            self.set_line_width(1.0)
-            self.set_draw_color(255, 140, 0)  # Orange color
-            self.rect(12, 12, self.w - 24, self.h - 24)
-
-    pdf = PDF()
-    pdf.add_page()
+    # Add logos at the top center
+    c.drawImage('image.png', 50, height - 100, 100, 50)  # Adjust the path and size as necessary
 
     # Add border
-    pdf.add_border()
+    c.setStrokeColor(colors.navy)
+    c.setLineWidth(2)
+    c.rect(0.5 * inch, 0.5 * inch, width - inch, height - inch)
+    c.setStrokeColor(colors.orange)
+    c.setLineWidth(1)
+    c.rect(0.55 * inch, 0.55 * inch, width - 1.1 * inch, height - 1.1 * inch)
 
-    pdf.set_font("Arial", size=12)
-    pdf.ln(50)
-    pdf.cell(0, 10, "Financial Analyst Internship", 0, 1, 'C')
-    pdf.ln(10)
-    
-    pdf.set_font("Arial", 'B', 16)
-    pdf.cell(0, 10, "This certifies that", 0, 1, 'C')
-    pdf.ln(10)
-    
-    pdf.set_font("Arial", 'B', 20)
-    pdf.cell(0, 10, name, 0, 1, 'C')
-    pdf.ln(10)
-    
-    pdf.set_font("Arial", size=12)
-    pdf.multi_cell(0, 10, f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}.", 0, 'C')
-    pdf.ln(10)
-    
-    pdf.cell(0, 10, "Key Responsibilities and Achievements:", 0, 1, 'L')
-    pdf.ln(5)
+    # Add text
+    styles = getSampleStyleSheet()
+    c.setFont("Helvetica-Bold", 24)
+    c.setFillColor(colors.navy)
+    c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
+
+    c.setFont("Helvetica", 12)
+    c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
+
+    c.setFont("Helvetica-Bold", 16)
+    c.drawCentredString(width / 2.0, height - 210, "This certifies that")
+
+    c.setFont("Helvetica-Bold", 20)
+    c.drawCentredString(width / 2.0, height - 240, name)
+
+    c.setFont("Helvetica", 12)
+    text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
+    c.drawCentredString(width / 2.0, height - 270, text)
+
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(0.75 * inch, height - 310, "Key Responsibilities and Achievements:")
+
     responsibilities = [
         "Conducted in-depth fundamental and technical analysis of stocks.",
         "Tracked and recorded market data, preparing forecasts on financial and economic events.",
@@ -77,20 +60,34 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Developed research reports on national economic conditions and financial forecasts.",
         "Contributed to secondary financial research, enhancing team outputs."
     ]
+    y = height - 330
+    c.setFont("Helvetica", 12)
     for responsibility in responsibilities:
-        pdf.cell(0, 10, f"• {responsibility}", 0, 1, 'L')
-    pdf.ln(10)
-    
-    pdf.cell(0, 10, "Performance Summary:", 0, 1, 'L')
-    pdf.ln(5)
-    pdf.multi_cell(0, 10, f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives.", 0, 'L')
-    pdf.ln(20)
-    
-    pdf.cell(0, 10, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}", 0, 1, 'C')
-    pdf.ln(20)
+        c.drawString(0.75 * inch, y, f"- {responsibility}")
+        y -= 15
 
-    pdf_file = f"Internship_Certificate_{name}.pdf"
-    pdf.output(pdf_file, 'F')
+    c.drawString(0.75 * inch, y, "Performance Summary:")
+    y -= 20
+    performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
+    c.drawString(0.75 * inch, y, performance_summary)
+    y -= 30
+
+    c.drawCentredString(width / 2.0, y, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}")
+    y -= 40
+
+    # Footer with images and names
+    c.drawImage('signature1.png', 0.75 * inch, y, 60, 30)  # Replace with actual path
+    c.drawImage('signature2.png', width - 1.75 * inch, y, 60, 30)  # Replace with actual path
+    y -= 20
+    c.drawString(0.75 * inch, y, "Sheetal Maurya")
+    c.drawString(0.75 * inch, y - 15, "Asst. Prof")
+    c.drawString(width - 1.75 * inch, y, "Subir Singh")
+    c.drawString(width - 1.75 * inch, y - 15, "Director")
+    y -= 30
+    c.drawImage('footer_image.png', (width - 80) / 2.0, y, 80, 30)  # Replace with actual path
+
+    c.showPage()
+    c.save()
     return pdf_file
 
 # Streamlit App
