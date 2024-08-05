@@ -22,7 +22,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
 
      # Add logo centered at the top
     logo_width = 150
-    logo_height = 75
+    logo_height = 55
     c.drawImage('image.png', (width - logo_width) / 2, height - 80, logo_width, logo_height)
 
     # Add border
@@ -37,7 +37,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     styles = getSampleStyleSheet()
     c.setFont("Helvetica-Bold", 24)
     c.setFillColor(colors.navy)
-    c.drawCentredString(width / 2.0, height - 100, "CERTIFICATE OF INTERNSHIP")
+    c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
 
     c.setFont("Helvetica", 18)
     c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
