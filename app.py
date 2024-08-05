@@ -30,6 +30,11 @@ def generate_certificate(name, start_date, end_date, issue_date):
             self.cell(0, 10, 'Sheetal Maurya', 0, 1, 'L')
             self.cell(0, 10, 'Asst. Prof', 0, 1, 'L')
 
+        def add_border(self):
+            self.set_line_width(1.5)
+            self.set_draw_color(30, 144, 255)  # Blue color for the border
+            self.rect(10, 10, self.w - 20, self.h - 20)
+
     pdf = PDF()
     pdf.add_page()
     
@@ -37,8 +42,11 @@ def generate_certificate(name, start_date, end_date, issue_date):
     pdf.image('logo.png', 10, 10, 30)  # Replace with actual path
     pdf.image('another_logo.png', 170, 10, 30)  # Replace with actual path
     
+    # Add border
+    pdf.add_border()
+    
     pdf.set_font("Arial", size=12)
-    pdf.ln(30)
+    pdf.ln(50)
     pdf.cell(0, 10, "The certificate is proudly presented to", 0, 1, 'C')
     pdf.ln(10)
     
