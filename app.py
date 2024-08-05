@@ -76,7 +76,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.setFont("Helvetica", 12)
     for responsibility in responsibilities:
         c.drawString(0.75 * inch, y, f"- {responsibility}")
-        y -= 15
+        y -= 25
 
     c.drawString(0.75 * inch, y, "Performance Summary:")
     y -= 40
