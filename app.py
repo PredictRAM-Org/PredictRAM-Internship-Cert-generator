@@ -6,7 +6,6 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import Paragraph
-from reportlab.lib import utils
 
 # Load candidates
 candidates_file = 'candidates.xlsx'  # Update this path as necessary
