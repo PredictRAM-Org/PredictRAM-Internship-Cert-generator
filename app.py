@@ -37,7 +37,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.setFillColor(colors.navy)
     c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
 
-    c.setFont("Helvetica", 18)
+    c.setFont("Helvetica", 12)
     c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
 
     c.setFont("Helvetica-Bold", 16)
@@ -46,7 +46,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.setFont("Helvetica-Bold", 20)
     c.drawCentredString(width / 2.0, height - 240, name)
 
-    c.setFont("Helvetica", 18)
+    c.setFont("Helvetica", 12)
     text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
     
     # Create Paragraph for text wrapping
@@ -61,7 +61,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     p.drawOn(c, (width - text_width) / 2.0, text_y)
     text_y -= p.height
 
-    c.setFont("Helvetica--Bold", 14)
+    c.setFont("Helvetica-Bold", 14)
     c.drawString(0.75 * inch, text_y, "Key Responsibilities and Achievements:")
 
     responsibilities = [
@@ -72,14 +72,14 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Developed research reports on national economic conditions and financial forecasts.",
         "Contributed to secondary financial research, enhancing team outputs."
     ]
-    y = text_y - 30
+    y = text_y - 20
     c.setFont("Helvetica", 12)
     for responsibility in responsibilities:
         c.drawString(0.75 * inch, y, f"- {responsibility}")
-        y -= 25
+        y -= 15
 
     c.drawString(0.75 * inch, y, "Performance Summary:")
-    y -= 40
+    y -= 20
     performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
     
     # Create Paragraph for performance summary
