@@ -64,24 +64,26 @@ def generate_certificate(name, start_date, end_date, issue_date):
     pdf.ln(10)
     
     pdf.set_font("Arial", size=12)
-    pdf.cell(0, 10, f"has successfully completed the Financial Analyst Internship program at PredictRAM", 0, 1, 'C')
-    pdf.cell(0, 10, f"from {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}.", 0, 1, 'C')
+    pdf.multi_cell(0, 10, f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}.", 0, 'C')
     pdf.ln(10)
     
     pdf.cell(0, 10, "Key Responsibilities and Achievements:", 0, 1, 'L')
     pdf.ln(5)
-    pdf.cell(0, 10, "• Conducted in-depth fundamental and technical analysis of stocks.", 0, 1, 'L')
-    pdf.cell(0, 10, "• Tracked and recorded market data, preparing forecasts on financial and economic events.", 0, 1, 'L')
-    pdf.cell(0, 10, "• Provided insights on upcoming economic events and trends.", 0, 1, 'L')
-    pdf.cell(0, 10, "• Mastered advanced software for predictive analysis.", 0, 1, 'L')
-    pdf.cell(0, 10, "• Developed research reports on national economic conditions and financial forecasts.", 0, 1, 'L')
-    pdf.cell(0, 10, "• Contributed to secondary financial research, enhancing team outputs.", 0, 1, 'L')
+    responsibilities = [
+        "Conducted in-depth fundamental and technical analysis of stocks.",
+        "Tracked and recorded market data, preparing forecasts on financial and economic events.",
+        "Provided insights on upcoming economic events and trends.",
+        "Mastered advanced software for predictive analysis.",
+        "Developed research reports on national economic conditions and financial forecasts.",
+        "Contributed to secondary financial research, enhancing team outputs."
+    ]
+    for responsibility in responsibilities:
+        pdf.cell(0, 10, f"• {responsibility}", 0, 1, 'L')
     pdf.ln(10)
     
     pdf.cell(0, 10, "Performance Summary:", 0, 1, 'L')
     pdf.ln(5)
-    pdf.cell(0, 10, f"{name.encode('latin1', 'replace').decode('latin1')} demonstrated strong analytical skills, effectively contributed to team projects,", 0, 1, 'L')
-    pdf.cell(0, 10, "and delivered valuable insights that supported the company’s objectives.", 0, 1, 'L')
+    pdf.multi_cell(0, 10, f"{name.encode('latin1', 'replace').decode('latin1')} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives.", 0, 'L')
     pdf.ln(20)
     
     pdf.cell(0, 10, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}", 0, 1, 'C')
