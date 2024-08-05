@@ -98,7 +98,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawImage('signature1.png', width - 1.75 * inch, y, 60, 30)  # Replace with actual path
     y -= 60
     c.drawString(0.75 * inch, y, "Sheetal Maurya")
-    c.drawString(0.75 * inch, y - 15, "Asst. Prof")
+    c.drawString(0.75 * inch, y - 5, "Asst. Prof")
     c.drawString(width - 1.75 * inch, y, "Subir Singh")
     c.drawString(width - 1.75 * inch, y - 15, "Director")
     y -= 40
