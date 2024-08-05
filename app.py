@@ -47,10 +47,16 @@ def generate_certificate(name, start_date, end_date, issue_date):
 
     c.setFont("Helvetica", 12)
     text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
-    c.drawCentredString(width / 2.0, height - 270, text)
+    text_width = width - 1.5 * inch
+    c.setFont("Helvetica", 12)
+    text_lines = c.wrap(text, text_width)
+    text_y = height - 270
+    for line in text_lines:
+        c.drawCentredString(width / 2.0, text_y, line)
+        text_y -= 15
 
     c.setFont("Helvetica-Bold", 14)
-    c.drawString(0.75 * inch, height - 310, "Key Responsibilities and Achievements:")
+    c.drawString(0.75 * inch, text_y, "Key Responsibilities and Achievements:")
 
     responsibilities = [
         "Conducted in-depth fundamental and technical analysis of stocks.",
@@ -60,7 +66,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Developed research reports on national economic conditions and financial forecasts.",
         "Contributed to secondary financial research, enhancing team outputs."
     ]
-    y = height - 330
+    y = text_y - 20
     c.setFont("Helvetica", 12)
     for responsibility in responsibilities:
         c.drawString(0.75 * inch, y, f"- {responsibility}")
@@ -69,8 +75,10 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawString(0.75 * inch, y, "Performance Summary:")
     y -= 20
     performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
-    c.drawString(0.75 * inch, y, performance_summary)
-    y -= 30
+    text_lines = c.wrap(performance_summary, text_width)
+    for line in text_lines:
+        c.drawString(0.75 * inch, y, line)
+        y -= 15
 
     c.drawCentredString(width / 2.0, y, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}")
     y -= 40
@@ -78,7 +86,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     # Footer with images and names
     c.drawImage('signature1.png', 0.75 * inch, y, 60, 30)  # Replace with actual path
     c.drawImage('signature2.png', width - 1.75 * inch, y, 60, 30)  # Replace with actual path
-    y -= 20
+    y -= 60
     c.drawString(0.75 * inch, y, "Sheetal Maurya")
     c.drawString(0.75 * inch, y - 15, "Asst. Prof")
     c.drawString(width - 1.75 * inch, y, "Subir Singh")
