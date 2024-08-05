@@ -3,7 +3,7 @@ import pandas as pd
 from fpdf import FPDF
 
 # Load candidates
-candidates_file = '/mnt/data/candidates.xlsx'  # Update this path as necessary
+candidates_file = 'candidates.xlsx'  # Update this path as necessary
 candidates_df = pd.read_excel(candidates_file)
 
 # Function to generate certificate
