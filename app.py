@@ -22,7 +22,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
 
 
     # Add logos at the top center
-    c.drawImage('pngwing.png', 450, height - 100, 50, 70)  # Adjust the path and size as necessary
+    c.drawImage('pngwing2.png', 450, height - 100, 50, 70)  # Adjust the path and size as necessary
     
     # Add logos at the top center
     c.drawImage('image.png', 250, height - 120, 120, 60)  # Adjust the path and size as necessary
@@ -101,10 +101,10 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawImage('signature2.png', 0.75 * inch, y, 100, 60)  # Replace with actual path
     c.drawImage('signature1.png', width - 2.25 * inch, y, 120, 60)  # Replace with actual path
     y -= 40
-    c.drawString(0.75 * inch, y, "Sheetal Maurya")
-    c.drawString(0.75 * inch, y - 15, "Asst. Prof")
-    c.drawString(width - 1.75 * inch, y, "Subir Singh")
-    c.drawString(width - 1.75 * inch, y - 15, "Director")
+    c.drawString(0.75 * inch, y, "Subir Singh")
+    c.drawString(0.75 * inch, y - 15, "Director")
+    c.drawString(width - 1.75 * inch, y, "Sheetal Maurya")
+    c.drawString(width - 1.75 * inch, y - 15, "Asst. Prof")
     y -= 40
     c.drawImage('footer_image.png', (width - 320) / 2.0, y, 320, 60)  # Replace with actual path
 
