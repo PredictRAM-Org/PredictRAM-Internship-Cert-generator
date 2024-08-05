@@ -34,8 +34,8 @@ def generate_certificate(name, start_date, end_date, issue_date):
     pdf.add_page()
     
     # Add Images (placeholders for now)
-    pdf.image('path/to/logo.png', 10, 10, 30)  # Replace with actual path
-    pdf.image('path/to/another_logo.png', 170, 10, 30)  # Replace with actual path
+    pdf.image('logo.png', 10, 10, 30)  # Replace with actual path
+    pdf.image('another_logo.png', 170, 10, 30)  # Replace with actual path
     
     pdf.set_font("Arial", size=12)
     pdf.ln(30)
