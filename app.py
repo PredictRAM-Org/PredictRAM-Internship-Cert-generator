@@ -98,8 +98,8 @@ def generate_certificate(name, start_date, end_date, issue_date):
     y -= 40
 
     # Footer with images and names
-    c.drawImage('signature2.png', 0.75 * inch, y, 100, 60)  # Replace with actual path
-    c.drawImage('signature1.png', width - 2.25 * inch, y, 120, 60)  # Replace with actual path
+    c.drawImage('signature1.png', 0.75 * inch, y, 100, 60)  # Replace with actual path
+    c.drawImage('signature2.png', width - 2.25 * inch, y, 120, 60)  # Replace with actual path
     y -= 40
     c.drawString(0.75 * inch, y, "Subir Singh")
     c.drawString(0.75 * inch, y - 15, "Director")
