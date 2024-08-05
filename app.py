@@ -37,7 +37,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     styles = getSampleStyleSheet()
     c.setFont("Helvetica-Bold", 24)
     c.setFillColor(colors.navy)
-    c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
+    c.drawCentredString(width / 2.0, height - 100, "CERTIFICATE OF INTERNSHIP")
 
     c.setFont("Helvetica", 18)
     c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
