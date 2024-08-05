@@ -90,7 +90,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     pdf.ln(20)
 
     pdf_file = f"Internship_Certificate_{name}.pdf"
-    pdf.output(pdf_file)
+    pdf.output(pdf_file, 'F')
     return pdf_file
 
 # Streamlit App
