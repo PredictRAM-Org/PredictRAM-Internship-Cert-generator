@@ -60,7 +60,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     pdf.ln(10)
     
     pdf.set_font("Arial", 'B', 20)
-    pdf.cell(0, 10, name.encode('latin1', 'ignore').decode('latin1'), 0, 1, 'C')
+    pdf.cell(0, 10, name, 0, 1, 'C')
     pdf.ln(10)
     
     pdf.set_font("Arial", size=12)
@@ -78,12 +78,12 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Contributed to secondary financial research, enhancing team outputs."
     ]
     for responsibility in responsibilities:
-        pdf.cell(0, 10, f"• {responsibility.encode('latin1', 'ignore').decode('latin1')}", 0, 1, 'L')
+        pdf.cell(0, 10, f"• {responsibility}", 0, 1, 'L')
     pdf.ln(10)
     
     pdf.cell(0, 10, "Performance Summary:", 0, 1, 'L')
     pdf.ln(5)
-    pdf.multi_cell(0, 10, f"{name.encode('latin1', 'ignore').decode('latin1')} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives.", 0, 'L')
+    pdf.multi_cell(0, 10, f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives.", 0, 'L')
     pdf.ln(20)
     
     pdf.cell(0, 10, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}", 0, 1, 'C')
