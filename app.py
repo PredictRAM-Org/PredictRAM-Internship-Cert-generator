@@ -35,16 +35,16 @@ def generate_certificate(name, start_date, end_date, issue_date):
     styles = getSampleStyleSheet()
     c.setFont("Helvetica-Bold", 24)
     c.setFillColor(colors.navy)
-    c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
+    c.drawCentredString(width / 2.0, height - 180, "CERTIFICATE OF INTERNSHIP")
 
     c.setFont("Helvetica", 18)
-    c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
+    c.drawCentredString(width / 2.0, height - 200, "Financial Analyst Internship")
 
     c.setFont("Helvetica-Bold", 16)
-    c.drawCentredString(width / 2.0, height - 210, "This certifies that")
+    c.drawCentredString(width / 2.0, height - 230, "This certifies that")
 
     c.setFont("Helvetica-Bold", 20)
-    c.drawCentredString(width / 2.0, height - 200, name)
+    c.drawCentredString(width / 2.0, height - 240, name)
 
     c.setFont("Helvetica", 18)
     text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
