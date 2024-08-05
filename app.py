@@ -61,7 +61,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     p.drawOn(c, (width - text_width) / 2.0, text_y)
     text_y -= p.height
 
-    c.setFont("Helvetica", 12)
+    c.setFont("Helvetica--Bold", 14)
     c.drawString(0.75 * inch, text_y, "Key Responsibilities and Achievements:")
 
     responsibilities = [
@@ -73,7 +73,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Contributed to secondary financial research, enhancing team outputs."
     ]
     y = text_y - 30
-    c.setFont("Helvetica-Bold", 14)
+    c.setFont("Helvetica", 12)
     for responsibility in responsibilities:
         c.drawString(0.75 * inch, y, f"- {responsibility}")
         y -= 25
