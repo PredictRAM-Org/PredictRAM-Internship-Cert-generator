@@ -79,7 +79,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
         y -= 15
 
     c.drawString(0.75 * inch, y, "Performance Summary:")
-    y -= 20
+    y -= 40
     performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
     
     # Create Paragraph for performance summary
