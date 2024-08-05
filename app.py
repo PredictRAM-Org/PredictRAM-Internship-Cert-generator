@@ -33,7 +33,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.rect(0.5 * inch, 0.5 * inch, width - inch, height - inch)
     c.setStrokeColor(colors.purple)
     c.setLineWidth(1)
-    c.rect(0.55 * inch, 0.55 * inch, width - 2.1 * inch, height - 2.1 * inch)
+    c.rect(0.55 * inch, 0.55 * inch, width - 1.1 * inch, height - 1.1 * inch)
 
     # Add text
     styles = getSampleStyleSheet()
