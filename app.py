@@ -14,7 +14,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     class PDF(FPDF):
         def header(self):
             # Add logos at the top center
-            self.image('image.png', 50, 10, 100)  # Adjust the path and size as necessary
+            self.image('/mnt/data/image.png', 50, 10, 100)  # Adjust the path and size as necessary
             self.ln(35)
             self.set_font('Arial', 'B', 24)
             self.set_text_color(0, 0, 128)  # Navy blue color
@@ -60,7 +60,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     pdf.ln(10)
     
     pdf.set_font("Arial", 'B', 20)
-    pdf.cell(0, 10, name, 0, 1, 'C')
+    pdf.cell(0, 10, name.encode('latin1', 'replace').decode('latin1'), 0, 1, 'C')
     pdf.ln(10)
     
     pdf.set_font("Arial", size=12)
@@ -80,7 +80,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
     
     pdf.cell(0, 10, "Performance Summary:", 0, 1, 'L')
     pdf.ln(5)
-    pdf.cell(0, 10, f"{name} demonstrated strong analytical skills, effectively contributed to team projects,", 0, 1, 'L')
+    pdf.cell(0, 10, f"{name.encode('latin1', 'replace').decode('latin1')} demonstrated strong analytical skills, effectively contributed to team projects,", 0, 1, 'L')
     pdf.cell(0, 10, "and delivered valuable insights that supported the company’s objectives.", 0, 1, 'L')
     pdf.ln(20)
     
