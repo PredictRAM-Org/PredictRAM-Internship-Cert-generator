@@ -73,7 +73,7 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Contributed to secondary financial research, enhancing team outputs."
     ]
     y = text_y - 30
-    c.setFont("Helvetica", 12)
+    c.setFont("Helvetica-Bold", 14)
     for responsibility in responsibilities:
         c.drawString(0.75 * inch, y, f"- {responsibility}")
         y -= 25
