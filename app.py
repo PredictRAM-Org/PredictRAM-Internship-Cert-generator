@@ -6,6 +6,12 @@ from fpdf import FPDF
 candidates_file = 'candidates.xlsx'  # Update this path as necessary
 candidates_df = pd.read_excel(candidates_file)
 
+# Debugging: Display columns in the dataframe
+st.write("Columns in the candidates file:", candidates_df.columns.tolist())
+
+# Check for leading/trailing spaces in column names
+candidates_df.columns = candidates_df.columns.str.strip()
+
 # Function to generate certificate
 def generate_certificate(name, start_date, end_date, issue_date):
     class PDF(FPDF):
@@ -54,9 +60,6 @@ def generate_certificate(name, start_date, end_date, issue_date):
 # Streamlit App
 st.title("Internship Certificate Generator")
 
-# Display the column names to verify
-st.write("Columns in the candidates file:", candidates_df.columns)
-
 # Input Form
 st.header("Enter Internship Details")
 
@@ -70,8 +73,11 @@ with st.form("internship_form"):
 # Check if the candidate is in the list
 if submit_button:
     # Ensure the 'Candidate Name' column is present in the dataframe
+    st.write("Checking for 'Candidate Name' column...")
     if 'Candidate Name' in candidates_df.columns:
+        st.write("'Candidate Name' column found.")
         if name in candidates_df['Candidate Name'].values:
+            st.write("Candidate found in the list.")
             # Generate PDF Certificate
             pdf_file = generate_certificate(name, start_date, end_date, issue_date)
             
