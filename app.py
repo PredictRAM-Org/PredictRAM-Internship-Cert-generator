@@ -5,6 +5,8 @@ from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.platypus import Paragraph
+from reportlab.lib import utils
 
 # Load candidates
 candidates_file = 'candidates.xlsx'  # Update this path as necessary
@@ -47,13 +49,18 @@ def generate_certificate(name, start_date, end_date, issue_date):
 
     c.setFont("Helvetica", 12)
     text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
+    
+    # Create Paragraph for text wrapping
+    p = Paragraph(text, style=styles['Normal'])
     text_width = width - 1.5 * inch
-    c.setFont("Helvetica", 12)
-    text_lines = c.wrap(text, text_width)
+    p.width = text_width
+    p.height = 50  # Adjust height as needed
+    p.wrapOn(c, text_width, 50)
+    
+    # Draw text in PDF
     text_y = height - 270
-    for line in text_lines:
-        c.drawCentredString(width / 2.0, text_y, line)
-        text_y -= 15
+    p.drawOn(c, (width - text_width) / 2.0, text_y)
+    text_y -= p.height
 
     c.setFont("Helvetica-Bold", 14)
     c.drawString(0.75 * inch, text_y, "Key Responsibilities and Achievements:")
@@ -75,8 +82,11 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c.drawString(0.75 * inch, y, "Performance Summary:")
     y -= 20
     performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
-    text_lines = c.wrap(performance_summary, text_width)
-    for line in text_lines:
+    p = Paragraph(performance_summary, style=styles['Normal'])
+    p.width = text_width
+    p.height = 50  # Adjust height as needed
+    p.wrapOn(c, text_width, 50)
+    for line in p.wrap(text_width, 50):
         c.drawString(0.75 * inch, y, line)
         y -= 15
 
