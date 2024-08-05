@@ -20,8 +20,10 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c = canvas.Canvas(pdf_file, pagesize=letter)
     width, height = letter
 
-    # Add logos at the top center
-    c.drawImage('image.png', 50, height - 100, 100, 50)  # Adjust the path and size as necessary
+    # Add logo centered at the top
+    logo_width = 150
+    logo_height = 75
+    c.drawImage('image.png', (width - logo_width) / 2, height - 100, logo_width, logo_height)
 
     # Add border
     c.setStrokeColor(colors.navy)
@@ -33,35 +35,35 @@ def generate_certificate(name, start_date, end_date, issue_date):
 
     # Add text
     styles = getSampleStyleSheet()
-    c.setFont("Helvetica-Bold", 24)
+    c.setFont("Helvetica-Bold", 26)
     c.setFillColor(colors.navy)
     c.drawCentredString(width / 2.0, height - 150, "CERTIFICATE OF INTERNSHIP")
 
-    c.setFont("Helvetica", 18)
-    c.drawCentredString(width / 2.0, height - 180, "Financial Analyst Internship")
+    c.setFont("Helvetica", 20)
+    c.drawCentredString(width / 2.0, height - 190, "Financial Analyst Internship")
 
-    c.setFont("Helvetica-Bold", 16)
-    c.drawCentredString(width / 2.0, height - 210, "This certifies that")
+    c.setFont("Helvetica-Bold", 18)
+    c.drawCentredString(width / 2.0, height - 230, "This certifies that")
 
-    c.setFont("Helvetica-Bold", 20)
-    c.drawCentredString(width / 2.0, height - 240, name)
+    c.setFont("Helvetica-Bold", 24)
+    c.drawCentredString(width / 2.0, height - 270, name)
 
-    c.setFont("Helvetica", 18)
+    c.setFont("Helvetica", 16)
     text = f"has successfully completed the Financial Analyst Internship program at PredictRAM\nfrom {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}."
     
     # Create Paragraph for text wrapping
     p = Paragraph(text, style=styles['Normal'])
     text_width = width - 1.5 * inch
     p.width = text_width
-    p.height = 50  # Adjust height as needed
-    p.wrapOn(c, text_width, 50)
+    p.height = 60  # Adjust height as needed
+    p.wrapOn(c, text_width, 60)
     
     # Draw text in PDF
-    text_y = height - 270
+    text_y = height - 320
     p.drawOn(c, (width - text_width) / 2.0, text_y)
     text_y -= p.height
 
-    c.setFont("Helvetica-Bold", 14)
+    c.setFont("Helvetica-Bold", 16)
     c.drawString(0.75 * inch, text_y, "Key Responsibilities and Achievements:")
 
     responsibilities = [
@@ -72,31 +74,34 @@ def generate_certificate(name, start_date, end_date, issue_date):
         "Developed research reports on national economic conditions and financial forecasts.",
         "Contributed to secondary financial research, enhancing team outputs."
     ]
-    y = text_y - 20
-    c.setFont("Helvetica", 12)
+    y = text_y - 30
+    c.setFont("Helvetica", 14)
     for responsibility in responsibilities:
         c.drawString(0.75 * inch, y, f"- {responsibility}")
         y -= 25
 
+    c.setFont("Helvetica-Bold", 16)
     c.drawString(0.75 * inch, y, "Performance Summary:")
-    y -= 40
+    y -= 30
     performance_summary = f"{name} demonstrated strong analytical skills, effectively contributed to team projects,\nand delivered valuable insights that supported the company’s objectives."
     
     # Create Paragraph for performance summary
     p = Paragraph(performance_summary, style=styles['Normal'])
     p.width = text_width
-    p.height = 50  # Adjust height as needed
-    p.wrapOn(c, text_width, 50)
+    p.height = 80  # Adjust height as needed
+    p.wrapOn(c, text_width, 80)
     p.drawOn(c, 0.75 * inch, y)
     y -= p.height
 
+    c.setFont("Helvetica", 14)
     c.drawCentredString(width / 2.0, y, f"Issue Date: {issue_date.strftime('%d-%m-%Y')}")
     y -= 40
 
     # Footer with images and names
-    c.drawImage('signature1.png', 0.75 * inch, y, 60, 30)  # Replace with actual path
-    c.drawImage('signature2.png', width - 1.75 * inch, y, 60, 30)  # Replace with actual path
+    c.drawImage('signature1.png', 0.75 * inch, y, 80, 40)  # Replace with actual path
+    c.drawImage('signature2.png', width - 1.75 * inch, y, 80, 40)  # Replace with actual path
     y -= 60
+    c.setFont("Helvetica", 12)
     c.drawString(0.75 * inch, y, "Sheetal Maurya")
     c.drawString(0.75 * inch, y - 15, "Asst. Prof")
     c.drawString(width - 1.75 * inch, y, "Subir Singh")
