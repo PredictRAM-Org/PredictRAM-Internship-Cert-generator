@@ -20,10 +20,8 @@ def generate_certificate(name, start_date, end_date, issue_date):
     c = canvas.Canvas(pdf_file, pagesize=letter)
     width, height = letter
 
-     # Add logo centered at the top
-    logo_width = 150
-    logo_height = 55
-    c.drawImage('image.png', (width - logo_width) / 2, height - 80, logo_width, logo_height)
+     # Add logos at the top center
+    c.drawImage('image.png', 50, height - 100, 100, 50)  # Adjust the path and size as necessary
 
     # Add border
     c.setStrokeColor(colors.navy)
